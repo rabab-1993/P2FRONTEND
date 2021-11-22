@@ -1,0 +1,35 @@
+.recommendation {
+    width: 100%;
+    height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+    background: burlywood;
+    padding: 5rem;
+    
+}
+
+.recommendation-cards {
+    height: fit-content;
+    width: fit-content;
+    padding: 5rem;
+    display: flex;
+  
+    
+}
+
+.reco-card {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+   
+   
+}
+
+.reco-card img {
+    height: 100%;
+    width: 80%;
+    border-radius: 10px;
+}
