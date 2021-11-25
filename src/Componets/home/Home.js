@@ -7,13 +7,13 @@ import Search from "../search/Search";
 
 const Home = () => {
   return (
-    <div className="home">
+    <>
       
       <Section />
       <Search />
       <Reco />
       <ContactUs />
-    </div>
+    </>
   );
 };
 

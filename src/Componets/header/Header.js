@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined"
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
@@ -11,9 +11,14 @@ const Header = () => {
   let navigate = useNavigate();
 
   let toSignUpPage = () => {
-    navigate("/signup")
-  }
-  // 
+    navigate("/signup");
+  };
+
+  // Navigate function to sign up page
+  let toLogInPage = () => {
+    navigate("/login");
+  };
+  //
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -28,8 +33,19 @@ const Header = () => {
       <h1>logo</h1>
       <Link to="/">Home</Link>
       <Link to="/contact">Contact us</Link>
+      <MenuItem onClick={handleClose}>
+        <Link to="/signup" onClick={toSignUpPage}>
+          Register
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleClose}>
+        <Link to="/login" onClick={toLogInPage}>
+          Log in
+        </Link>
+      </MenuItem>
+    
 
-      <div>
+      {/* <div>
         <AccountCircleOutlinedIcon
           id="fade-button"
           aria-controls="fade-menu"
@@ -49,14 +65,8 @@ const Header = () => {
           onClose={handleClose}
           TransitionComponent={Fade}
         >
-          <MenuItem onClick={handleClose}>
-            <Link to="/">Log in</Link>
-            </MenuItem>
-          <MenuItem onClick={handleClose}>
-            <Link to="/signup" onClick={toSignUpPage}>SignUp</Link>
-            </MenuItem>
         </Menu>
-      </div>
+      </div> */}
     </nav>
   );
 };

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
@@ -14,6 +14,9 @@ const Signup = () => {
   let toHomePage = () => {
     navigate("/");
   };
+
+
+  // to creat new user
   const [newUser, setNewUser] = useState({
     name: "",
     userName: "",
@@ -26,14 +29,14 @@ const Signup = () => {
       const res = await axios.post(`http://localhost:5400/users/`, newUser);
       // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/`);
       console.log(res.data);
-      localStorage.setItem("userId", JSON.stringify(res.data._id));
+      localStorage.setItem("userName", JSON.stringify(newUser));
       window.location.reload(false);
     } catch (error) {
-      console.log("get user data error");
+      console.log("post user data error");
     }
   };
 
-  let submit = async () => {
+  let submit =  () => {
     console.log("done");
     creatUser();
     toHomePage()

@@ -6,7 +6,12 @@ nav {
    
 }
 
-nav a {
+
+#fade-button, #fade-menu {
+    cursor: pointer;
+}
+
+a {
     text-decoration: none;
     color: black;
 }

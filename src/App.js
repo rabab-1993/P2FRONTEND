@@ -7,6 +7,7 @@ import ContactUs from "./Componets/contactus/ContactUs"
 import Section from "./Componets/section/Section";
 import Reco from "./Componets/recommendation/Reco";
 import SignUp from "./Componets/account/signUp/SignUp";
+import Login from "./Componets/account/login/LogIn";
 import Home from "./Componets/home/Home";
 
 function App() {
@@ -26,14 +27,17 @@ function App() {
   // }
   return (
     
-    <BrowserRouter>
+    <>
+   
       <Header />
     <Routes>
       <Route exact path="/" element={<Home  />} />
       {/* <Route exact path="/contact" element={<ContactUs  />} /> */}
+      <Route exact path="/login" element={<Login  />} />
       <Route exact path="/signup" element={<SignUp  />} />
     </Routes>
-    </BrowserRouter>
+    
+    </>
     
   );
 }
