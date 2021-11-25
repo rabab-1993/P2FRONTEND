@@ -1,8 +1,6 @@
 import React from 'react';
-
-
 import "./style.css";
-import pexels from "./img/pexels.jpg"
+
 const Section = () => {
     return (
         <div className="section">

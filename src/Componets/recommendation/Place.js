@@ -1,6 +1,6 @@
 import React from 'react'
 
-const palce = () => {
+const Place = () => {
     return (
         <div>
            place 
@@ -8,4 +8,4 @@ const palce = () => {
     )
 }
 
-export default palce
+export default Place
