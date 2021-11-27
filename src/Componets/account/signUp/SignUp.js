@@ -29,7 +29,7 @@ const Signup = () => {
       const res = await axios.post(`http://localhost:5400/users/`, newUser);
       // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/`);
       console.log(res.data);
-      localStorage.setItem("userName", JSON.stringify(newUser));
+      localStorage.setItem("user", JSON.stringify(newUser));
       window.location.reload(false);
     } catch (error) {
       console.log("post user data error");
@@ -95,7 +95,7 @@ const Signup = () => {
               setNewUser({ ...newUser, password: ev.target.value })
             }
           />
-          <Button onClick={submit}>submit</Button>
+          <Button onClick={submit}>signup</Button>
         </Stack>
       </Container>
     </div>

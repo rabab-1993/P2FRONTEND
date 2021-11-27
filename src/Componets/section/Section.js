@@ -6,9 +6,14 @@ const Section = () => {
         <div className="section">
        <div className="box1"></div>
        <div className="box2"></div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore temporibus dolorem dignissimos sequi optio cupiditate beatae id, maiores accusamus ratione?</p>
+       <div className="box3">
+           <img src="https://images.pexels.com/photos/731217/pexels-photo-731217.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
+       </div>
+       <div className="box4">
+       <h3> Travel the world </h3>
+            <p>The fun part of traveling is discovering unique and offbeat places. Find something different on your trip with our website.</p>
             {/* <div className="circle"></div> */}
-           
+            </div>
         </div>
     )
 }

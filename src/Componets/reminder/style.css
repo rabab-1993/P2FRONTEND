@@ -1,0 +1,64 @@
+.reminder {
+    width: 100vw;
+    height: 70%;
+   padding: 4rem;
+   margin-right: 6rem;
+    display: flex;
+    flex-direction: column;
+   
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+.form {
+    width: 50vw;
+    display: flex;
+    justify-content: space-evenly;
+   
+}
+
+.remind-card{
+    width: 50%;
+    height: 15rem;
+    display: flex;
+    border: 2px solid rgb(91, 189, 159);
+    border-radius: 9px;
+}
+
+
+.img {
+    width: 45%;
+    height: 100%;
+    border-radius: 8px 0 0 8px;
+}
+
+.icon {
+    background: #a0dbd6;
+    border-radius: 7px;
+}
+
+.header1{
+    display: block;
+}
+.divcon{
+    position: absolute;
+    left: 710px;
+    top:250px;
+    line-height: 1.4;
+}
+
+.addButton{
+    margin-left: 1.5rem;
+    color: black;
+    margin-top: 13rem;
+    border-style: 
+    none;
+    padding: 
+    3px;
+    
+}
+
+/* .buttonDiv{
+    margin-left: 800px;   
+} */

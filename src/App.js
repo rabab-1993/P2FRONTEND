@@ -1,30 +1,19 @@
 
-import React, { useState, useEffect } from "react";
-import {BrowserRouter, Routes, Route } from "react-router-dom";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./Componets/header/Header";
-import ContactUs from "./Componets/contactus/ContactUs"
-import Section from "./Componets/section/Section";
+import ContactUs from "./Componets/contactus/ContactUs";
 import Reco from "./Componets/recommendation/Reco";
 import SignUp from "./Componets/account/signUp/SignUp";
 import Login from "./Componets/account/login/LogIn";
 import Home from "./Componets/home/Home";
+import Reminder from "./Componets/reminder/Reminder"
+import MyReminder from "./Componets/reminder/MyRemaind"
+import Search from "./Componets/search/Search";
+
 
 function App() {
-  // const [info, setInfo] = useState([])
-  // useEffect(() => {
-  // getInfo();
-
-  // }, [])
-  // const getInfo = async () => {
-  //   try {
-  //     const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/info/`);
-  //     console.log(res.data);
-  //     setInfo(res.data)
-  //   } catch (error) {
-  //     console.log("get info data error");
-  //   }
-  // }
   return (
     
     <>
@@ -33,6 +22,9 @@ function App() {
     <Routes>
       <Route exact path="/" element={<Home  />} />
       {/* <Route exact path="/contact" element={<ContactUs  />} /> */}
+      <Route exact path="/search" element={<Search  />} />
+      <Route exact path="/remind" element={<Reminder  />} />
+      <Route exact path="/myremind" element={<MyReminder  />} />
       <Route exact path="/login" element={<Login  />} />
       <Route exact path="/signup" element={<SignUp  />} />
     </Routes>

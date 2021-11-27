@@ -5,19 +5,40 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
+import SearchIcon from '@mui/icons-material/Search';
+import HomeIcon from '@mui/icons-material/Home';
+import { SiYourtraveldottv } from 'react-icons/si';
+
 
 const Header = () => {
-  // Navigate function to sign up page
   let navigate = useNavigate();
-
+  
+  // Navigate function to search page
+  let toSearchPage = () => {
+    navigate("/search");
+  };
+  // Navigate function to sign up page
   let toSignUpPage = () => {
     navigate("/signup");
   };
 
-  // Navigate function to sign up page
+  // Navigate function to login page
   let toLogInPage = () => {
     navigate("/login");
   };
+
+// Navigate function to remind page
+  let toRemindPage = () => {
+    navigate("/remind");
+  };
+// Navigate function to remind page
+  let toMyRemindPage = () => {
+    navigate("/myremind");
+  };
+
+// log in 
+const [isLog, setIsLog] = useState(false);
+
   //
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -30,19 +51,31 @@ const Header = () => {
 
   return (
     <nav>
-      <h1>logo</h1>
-      <Link to="/">Home</Link>
-      <Link to="/contact">Contact us</Link>
+
+      <Link to="/" >
+          <SiYourtraveldottv className="logo"/>
+        </Link>
+      <Link to="/"><HomeIcon sx={{ fontSize: 30 }} /></Link>
+      {/* <Link to="/contact">Contact us</Link> */}
+      <Link to="/search"><SearchIcon  onClick={toSearchPage}/></Link>
       <MenuItem onClick={handleClose}>
+        <Link to="/remind" onClick={toRemindPage}>
+          Reminder
+        </Link>
+      </MenuItem>
+      <MenuItem>
         <Link to="/signup" onClick={toSignUpPage}>
           Register
         </Link>
       </MenuItem>
-      <MenuItem onClick={handleClose}>
+      <MenuItem>
         <Link to="/login" onClick={toLogInPage}>
           Log in
         </Link>
       </MenuItem>
+      <Link to="/myremind" onClick={toMyRemindPage}>
+          MyRemaind
+        </Link>
     
 
       {/* <div>

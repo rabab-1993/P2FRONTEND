@@ -2,7 +2,7 @@
     height: 40rem;
     width: 100%;
     padding: 5em;
-    margin-top: 10rem;
+    margin-top: 0rem;
     /* background: url('./img/pexels.jpg')no-repeat;
     background-size: cover; */
     
@@ -13,7 +13,7 @@
     background:  #76ada0;
     width: 28%;
     height: 90%;
-    margin: auto 10rem;
+    margin: auto 8rem;
 }
 
 .box2 {
@@ -22,7 +22,37 @@
     /* margin: auto 10rem; */
     background: #e6eceb ;
     position: absolute;
-    bottom: -14rem;
-    left: 16rem;
+    bottom: 3.5rem;
+    left: 14.5rem;
     
+}
+
+.box3{
+    position: absolute;
+top:195px;
+left:260px;
+}
+
+.box3 img {
+ 
+    height: 380px; 
+}
+
+.box4{
+    position: absolute;
+    top:300px ; 
+    left: 630px;
+
+}
+.box4 h3{
+    font-size: 67px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bolder;
+}
+.box4 p{
+    font-size:24px;
+    text-align: justify;
+    margin-right: 120px;
+line-height: 35px;
+    margin-left: 10px;
 }

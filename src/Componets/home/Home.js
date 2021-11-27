@@ -3,16 +3,17 @@ import Section from "../section/Section";
 import Reco from "../recommendation/Reco";
 import ContactUs from "../contactus/ContactUs"
 import "./style.css";
-import Search from "../search/Search";
+import Footer from "../footer/Footer";
+
 
 const Home = () => {
   return (
     <>
       
       <Section />
-      <Search />
-      <Reco />
-      <ContactUs />
+      {/* <Reco /> */}
+      {/* <ContactUs /> */}
+      <Footer />
     </>
   );
 };
