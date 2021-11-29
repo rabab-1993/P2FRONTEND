@@ -10,26 +10,26 @@ import "./style.css";
 const Signup = () => {
   // Navigate function to Home page
   let navigate = useNavigate();
-
+// to creat new user
+const [newUser, setNewUser] = useState({
+  name: "",
+  userName: "",
+  email: "",
+  password: "",
+});
   let toHomePage = () => {
     navigate("/");
   };
 
 
-  // to creat new user
-  const [newUser, setNewUser] = useState({
-    name: "",
-    userName: "",
-    email: "",
-    password: "",
-  });
+  
 
   const creatUser = async () => {
     try {
       const res = await axios.post(`http://localhost:5400/users/`, newUser);
       // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/`);
       console.log(res.data);
-      localStorage.setItem("user", JSON.stringify(newUser));
+      localStorage.setItem("userId", JSON.stringify(res.data._id));
       window.location.reload(false);
     } catch (error) {
       console.log("post user data error");

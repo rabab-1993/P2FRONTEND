@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
@@ -11,8 +11,19 @@ import { SiYourtraveldottv } from 'react-icons/si';
 
 
 const Header = () => {
+  const [isLog, setIsLog] = useState();
+  const [user, setUser] = useState();
   let navigate = useNavigate();
-  
+  useEffect(() => {
+    let userid = JSON.parse(localStorage.getItem("userId"));
+    if (userid) {
+      setIsLog(true)
+      setUser(userid); 
+    }
+    else {
+      setIsLog(false)
+    }
+  }, []);
   // Navigate function to search page
   let toSearchPage = () => {
     navigate("/search");
@@ -37,7 +48,7 @@ const Header = () => {
   };
 
 // log in 
-const [isLog, setIsLog] = useState(false);
+
 
   //
   const [anchorEl, setAnchorEl] = useState(null);
@@ -49,7 +60,14 @@ const [isLog, setIsLog] = useState(false);
     setAnchorEl(null);
   };
 
+  const logOut =()=>{
+localStorage.clear(); 
+navigate("/");
+window.location.reload(false);
+  }
   return (
+    <>
+    {user ? (
     <nav>
 
       <Link to="/" >
@@ -63,14 +81,10 @@ const [isLog, setIsLog] = useState(false);
           Reminder
         </Link>
       </MenuItem>
+   
       <MenuItem>
-        <Link to="/signup" onClick={toSignUpPage}>
-          Register
-        </Link>
-      </MenuItem>
-      <MenuItem>
-        <Link to="/login" onClick={toLogInPage}>
-          Log in
+        <Link to="/login" onClick={logOut}>
+          Log out
         </Link>
       </MenuItem>
       <Link to="/myremind" onClick={toMyRemindPage}>
@@ -101,6 +115,40 @@ const [isLog, setIsLog] = useState(false);
         </Menu>
       </div> */}
     </nav>
+    ) :
+    (
+      
+      
+      <nav>
+
+      <Link to="/" >
+          <SiYourtraveldottv className="logo"/>
+        </Link>
+      <Link to="/"><HomeIcon sx={{ fontSize: 30 }} /></Link>
+      {/* <Link to="/contact">Contact us</Link> */}
+      <Link to="/search"><SearchIcon  onClick={toSearchPage}/></Link>
+   
+      <MenuItem>
+        <Link to="/signup" onClick={toSignUpPage}>
+          Register
+        </Link>
+      </MenuItem>
+      <MenuItem>
+        <Link to="/login" onClick={toLogInPage}>
+          Log in
+        </Link>
+      </MenuItem>
+  
+    
+
+    </nav>
+      
+      
+      
+      )
+        }
+  </>
+  
   );
 };
 

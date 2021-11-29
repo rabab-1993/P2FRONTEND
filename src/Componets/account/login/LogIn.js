@@ -8,11 +8,7 @@ import Container from "@mui/material/Container";
 import "./login.css";
 
 const LogIn = () => {
-  // useEffect(() => {
-  //   allUser()
-  // }, );
-
-
+ 
 
   // Navigate function to Home page
   let navigate = useNavigate();
@@ -22,6 +18,7 @@ const LogIn = () => {
   };
 
   // log in
+  const [message, setMessage] = useState("");
   const [getUser, setGetUser] = useState({
     userName: "",
 
@@ -33,7 +30,7 @@ const LogIn = () => {
       const res = await axios.get(`http://localhost:5400/users/`);
       // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/`);
      
-      //  window.location.reload(false);
+       window.location.reload(false);
 
       let found = res.data.find(
         (ele) =>
@@ -55,7 +52,7 @@ const LogIn = () => {
     ev.preventDefault();
 
     allUser();
-    //  toHomePage()
+     toHomePage()
     console.log(getUser);
   };
   return (

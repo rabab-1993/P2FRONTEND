@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState,  useEffect } from 'react';
 import axios from "axios";
 import "./remaind.css";
 const MyRemaind = () => {
     const [info, setInfo] = useState([]);
-    const [date, setDate] = useState(new Date());
+
+   
+    useEffect(() => {
+        getMyRemainder()
+      }, []);
+
     const getMyRemainder = async () => {
         try {
-          const res = await axios.get(`http://localhost:5400/info/remainder`);
+        let userid = JSON.parse(localStorage.getItem("userId"));
+          const res = await axios.get(`http://localhost:5400/info/remainder?userId=${userid}`);
           // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/`);
-          console.log(res.data);
+          console.log("data" + res.data);
           setInfo(res.data);
           // localStorage.setItem("userName", JSON.stringify(newUser));
           // window.location.reload(false);
@@ -16,6 +22,8 @@ const MyRemaind = () => {
           console.log("post user data error");
         }
       };
+
+      
 
     //   delete reminder
 
@@ -26,41 +34,46 @@ const MyRemaind = () => {
       };
 
 
-    return (
-        <div className="myremind">
-             <>
-          {info.length ? (
+      return (
+          <>
+          {info && 
+        <div className="reminde">
+          {info.map((ele) => {
+            return (
             <div className="remind-card">
-              <img src={info[1].webformatURL} className="img" />
-              <div className="divcon">
-                <h1 className="header1">{info[0].name}</h1>
+              <img src={ele.img} className="img" />
+              <div className="divcon1">
+                <h1 className="header1">{ele.cityName}</h1>
 
-                <h3 className="header1"> {info[0].main?.temp}</h3>
+                <h3 className="header1"> {ele.temp}</h3>
 
                 <img
-                  src={`http://openweathermap.org/img/wn/${
-                    info[0].weather && info[0].weather[0].icon
-                  }.png`}
+                  src={ele.icon}
                   className="icon"
                 />
                 <h3 className="header1">
-                  {info[0].weather && info[0].weather[0].description}
+                  {ele.description}
                 </h3>
 
                 <h5 className="header1">
-                  Your Trip Date: {date.toLocaleString()}
+                  Your Trip Date: {ele.date}
                 </h5>
               </div>
-              <div className="buttonDiv">
-                <button className="addButton" onClick={deleted}>
-                  ADD
+              {/* <div className="buttonDiv1">
+                <button className="addButton1" onClick={deleted}>
+                  DELETE
                 </button>
-              </div>
-            </div>
-          ) : null}
-        </>
+              </div> */}
+            </div> 
+
+            );
+          })}
         </div>
-    )
+    } 
+    </>  
+    ); 
 }
+
+
 
 export default MyRemaind
