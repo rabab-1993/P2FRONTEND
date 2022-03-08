@@ -13,6 +13,7 @@ const Reminder = () => {
   const [date, setDate] = useState(new Date());
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [departe, setDeparte] = useState("");
   const [info, setInfo] = useState([]);
   const [remind, setRemind] = useState({
     cityName: name,
@@ -21,6 +22,7 @@ const Reminder = () => {
     temp: "",
     img: "",
     icon: "",
+    departedDate: departe,
     userId: JSON.parse(localStorage.getItem("userId")),
   });
   useEffect(() => {
@@ -47,6 +49,7 @@ const Reminder = () => {
         icon: `http://openweathermap.org/img/wn/${
           res.data[0].weather[0].icon
         }.png`,
+        departedDate: departe, 
         userId: JSON.parse(localStorage.getItem("userId"))
       })
     } catch (error) {
@@ -134,6 +137,7 @@ const Reminder = () => {
               <div className="divcon">
                 <h1 className="header1">{info[0].name}</h1>
                 <h2>{`${days}Days until your trip to: ${info[0].name}, ${info[0].sys.country}`}</h2>
+                {/* {setDeparte(`${days}Days until your trip to: ${info[0].name}, ${info[0].sys.country}`)} */}
                 <h3 className="header1">  {`The Temperature: ${info[0].main?.temp}`}</h3>
 
                 <img

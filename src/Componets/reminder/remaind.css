@@ -1,22 +1,25 @@
 .reminde {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    margin: auto;
-    text-align: center;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: auto;
+  text-align: center;
 }
 
-.divcon1{
-    margin-top: 3rem;
-    margin-left: 10px;
-    text-align: left;
-    align-items: left;
-    font-size: large;
+/* .remind-card {
+
+} */
+
+.divcon1 {
+  margin-top: 3rem;
+  margin-left: 10px;
+  text-align: left;
+  align-items: left;
+  font-size: large;
 }
 
-.buttonDiv1{
-    margin-top: 200px;
-   position: absolute;
-   margin-left: 400px;
+.delete-bttn {
+  align-self: flex-end;
 }

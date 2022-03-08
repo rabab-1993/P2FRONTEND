@@ -5,10 +5,9 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
-import SearchIcon from '@mui/icons-material/Search';
-import HomeIcon from '@mui/icons-material/Home';
-import { SiYourtraveldottv } from 'react-icons/si';
-
+import SearchIcon from "@mui/icons-material/Search";
+import HomeIcon from "@mui/icons-material/Home";
+import { SiYourtraveldottv } from "react-icons/si";
 
 const Header = () => {
   const [isLog, setIsLog] = useState();
@@ -17,11 +16,10 @@ const Header = () => {
   useEffect(() => {
     let userid = JSON.parse(localStorage.getItem("userId"));
     if (userid) {
-      setIsLog(true)
-      setUser(userid); 
-    }
-    else {
-      setIsLog(false)
+      setIsLog(true);
+      setUser(userid);
+    } else {
+      setIsLog(false);
     }
   }, []);
   // Navigate function to search page
@@ -38,17 +36,16 @@ const Header = () => {
     navigate("/login");
   };
 
-// Navigate function to remind page
+  // Navigate function to remind page
   let toRemindPage = () => {
     navigate("/remind");
   };
-// Navigate function to remind page
+  // Navigate function to remind page
   let toMyRemindPage = () => {
     navigate("/myremind");
   };
 
-// log in 
-
+  // log in
 
   //
   const [anchorEl, setAnchorEl] = useState(null);
@@ -60,39 +57,41 @@ const Header = () => {
     setAnchorEl(null);
   };
 
-  const logOut =()=>{
-localStorage.clear(); 
-navigate("/");
-window.location.reload(false);
-  }
+  const logOut = () => {
+    localStorage.clear();
+    navigate("/");
+    window.location.reload(false);
+  };
   return (
     <>
-    {user ? (
-    <nav>
+      {user ? (
+        <nav>
+          <Link to="/">
+            <SiYourtraveldottv className="logo" />
+          </Link>
+          <Link to="/">
+            <HomeIcon sx={{ fontSize: 30 }} />
+          </Link>
+          {/* <Link to="/contact">Contact us</Link> */}
+          <Link to="/search">
+            <SearchIcon onClick={toSearchPage} />
+          </Link>
+          <MenuItem onClick={handleClose}>
+            <Link to="/remind" onClick={toRemindPage}>
+              Reminder
+            </Link>
+          </MenuItem>
 
-      <Link to="/" >
-          <SiYourtraveldottv className="logo"/>
-        </Link>
-      <Link to="/"><HomeIcon sx={{ fontSize: 30 }} /></Link>
-      {/* <Link to="/contact">Contact us</Link> */}
-      <Link to="/search"><SearchIcon  onClick={toSearchPage}/></Link>
-      <MenuItem onClick={handleClose}>
-        <Link to="/remind" onClick={toRemindPage}>
-          Reminder
-        </Link>
-      </MenuItem>
-   
-      <MenuItem>
-        <Link to="/login" onClick={logOut}>
-          Log out
-        </Link>
-      </MenuItem>
-      <Link to="/myremind" onClick={toMyRemindPage}>
-          MyRemaind
-        </Link>
-    
+          <MenuItem>
+            <Link to="/login" onClick={logOut}>
+              Log out
+            </Link>
+          </MenuItem>
+          <Link to="/myremind" onClick={toMyRemindPage}>
+            MyRemaind
+          </Link>
 
-      {/* <div>
+          {/* <div>
         <AccountCircleOutlinedIcon
           id="fade-button"
           aria-controls="fade-menu"
@@ -114,41 +113,33 @@ window.location.reload(false);
         >
         </Menu>
       </div> */}
-    </nav>
-    ) :
-    (
-      
-      
-      <nav>
+        </nav>
+      ) : (
+        <nav>
+          <Link to="/">
+            <SiYourtraveldottv className="logo" />
+          </Link>
+          <Link to="/">
+            <HomeIcon sx={{ fontSize: 30 }} />
+          </Link>
+          {/* <Link to="/contact">Contact us</Link> */}
+          <Link to="/search">
+            <SearchIcon onClick={toSearchPage} />
+          </Link>
 
-      <Link to="/" >
-          <SiYourtraveldottv className="logo"/>
-        </Link>
-      <Link to="/"><HomeIcon sx={{ fontSize: 30 }} /></Link>
-      {/* <Link to="/contact">Contact us</Link> */}
-      <Link to="/search"><SearchIcon  onClick={toSearchPage}/></Link>
-   
-      <MenuItem>
-        <Link to="/signup" onClick={toSignUpPage}>
-          Register
-        </Link>
-      </MenuItem>
-      <MenuItem>
-        <Link to="/login" onClick={toLogInPage}>
-          Log in
-        </Link>
-      </MenuItem>
-  
-    
-
-    </nav>
-      
-      
-      
-      )
-        }
-  </>
-  
+          <MenuItem>
+            <Link to="/signup" onClick={toSignUpPage}>
+              Register
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to="/login" onClick={toLogInPage}>
+              Log in
+            </Link>
+          </MenuItem>
+        </nav>
+      )}
+    </>
   );
 };
 

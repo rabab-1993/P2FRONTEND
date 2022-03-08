@@ -4,24 +4,37 @@ import TextField from "@mui/material/TextField";
 import { Box } from "@mui/system";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
+import CardMedia from "@mui/material/CardMedia";
 import "./style.css";
 
-
-
-
 const Search = () => {
-
   const [name, setName] = useState("");
-  const [result, setResult] = useState([]);
+  const [photos, setPhotos] = useState([]);
+  const [video, setVideo] = useState([]);
   // useEffect(() => {
-  //   getInfo();
-  // }, [result]);
+  //   getPhotos();
+  // }, []);
 
-  const getInfo = async () => {
+  const getPhotos = async () => {
     try {
-      const res = await axios.get(`http://localhost:5400/search?q=${name}`);
+      const res = await axios.get(
+        `http://localhost:5400/search/photos?q=${name}`
+      );
 
-      setResult(res.data);
+      setPhotos(res.data);
+      console.log(res.data);
+    } catch (error) {
+      console.log("get result data error");
+    }
+  };
+  const getVideos = async () => {
+    try {
+      const res = await axios.get(
+        `http://localhost:5400/search/videos?q=${name}`
+      );
+
+      setVideo(res.data);
+      console.log(res.data);
     } catch (error) {
       console.log("get result data error");
     }
@@ -30,8 +43,8 @@ const Search = () => {
   let searchResult = (ev) => {
     ev.preventDefault();
     setName(ev.target.value);
-    console.log(result);
-    getInfo();
+    getPhotos();
+    getVideos();
   };
 
   return (
@@ -43,13 +56,45 @@ const Search = () => {
           id="standard-size-normal"
           label="Search"
           variant="standard"
-          value={name}
-          // onChange={(ev) => {
-          //   setName(ev.target.value);
-          // }}
+          defaultValue={name}
+          onChange={(ev) => {
+            setName(ev.target.value);
+          }}
         />
       </Box>
-      {/* <div>{result.map()}</div> */}
+      <Box sx={{ width: 1300, height: 750 }}>
+        <ImageList variant="masonry" cols={3} gap={8}>
+          {/* {photos.length &&
+          photos.map((item) => (
+            <>
+              <ImageListItem key={item.id}>
+                <img
+                  src={`${item.webformatURL}?w=248&fit=crop&auto=format`}
+                  loading="lazy"
+                />
+              </ImageListItem>
+             
+             
+            </>
+          ))} */}
+        </ImageList>
+
+        {video.length &&
+          video.map((vid) => {
+            <div className="video">
+              <video
+                autoPlay
+                src={`${vid.videos.medium.url}?w=248&fit=crop&auto=format`}
+                type="video/mp4"
+              />
+
+              {/* <video autoPlay>
+                <source src={vid.videos.medium.url} type="video/mp4" />
+              </video> */}
+              {/* <CardMedia component="video" src={vid.videos.medium.url} />; */}
+            </div>;
+          })}
+      </Box>
     </div>
   );
 };
