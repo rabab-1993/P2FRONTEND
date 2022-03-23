@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Stack from "@mui/material/Stack";
@@ -8,8 +8,6 @@ import Container from "@mui/material/Container";
 import "./login.css";
 
 const LogIn = () => {
- 
-
   // Navigate function to Home page
   let navigate = useNavigate();
 
@@ -18,7 +16,6 @@ const LogIn = () => {
   };
 
   // log in
-  const [message, setMessage] = useState("");
   const [getUser, setGetUser] = useState({
     userName: "",
 
@@ -29,12 +26,12 @@ const LogIn = () => {
     try {
       const res = await axios.get(`http://localhost:5400/users/`);
       // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/`);
-     
-       window.location.reload(false);
+
+      window.location.reload(false);
 
       let found = res.data.find(
         (ele) =>
-          ele.userName == getUser.userName && ele.password == getUser.password
+          ele.userName === getUser.userName && ele.password === getUser.password
       );
       console.log(found);
       if (found) {
@@ -52,7 +49,7 @@ const LogIn = () => {
     ev.preventDefault();
 
     allUser();
-     toHomePage()
+    toHomePage();
     console.log(getUser);
   };
   return (
@@ -77,7 +74,6 @@ const LogIn = () => {
             id="standard-password-input"
             label="Password"
             type="password"
-            autoComplete="current-password"
             autoComplete="current-password"
             variant="standard"
             value={getUser.password}

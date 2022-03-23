@@ -8,6 +8,7 @@ const MyRemaind = () => {
 
   useEffect(() => {
     getMyRemainder();
+    // eslint-disable-next-line
   }, []);
 
   let userid = JSON.parse(localStorage.getItem("userId"));
@@ -29,7 +30,9 @@ const MyRemaind = () => {
   //   delete reminder
   let deleteMyRemainder = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:5400/info/delete?_id=${id}`);
+      const res = await axios.delete(
+        `http://localhost:5400/info/delete?_id=${id}`
+      );
       console.log(res.data);
     } catch (error) {
       console.log(error);
@@ -39,42 +42,41 @@ const MyRemaind = () => {
 
   return (
     <>
-    {info.length === 0 ? (
-    <h1 style={{textAlign: "center"}}>You Don't have any reminder</h1>
-    ) : (
-      <div className="reminde">
-      {info.length && (
-          info.map((ele) => {
-            return (
-              <div className="remind-card">
-                <img src={ele.img} className="img" />
-                <div className="divcon1">
-                  <h1 className="header1">{ele.cityName}</h1>
+      {info.length === 0 ? (
+        <h1 style={{ textAlign: "center" }}>You Don't have any reminder</h1>
+      ) : (
+        <div className="reminde">
+          {info.length &&
+            info.map((ele) => {
+              return (
+                <div className="remind-card">
+                  {/* eslint-disable-next-line  */}
+                  <img src={ele.img} className="img" />
+                  <div className="divcon1">
+                    <h1 className="header1">{ele.cityName}</h1>
 
-                  <h3 className="header1"> {ele.temp}</h3>
+                    <h3 className="header1"> {ele.temp}</h3>
+                    {/*  eslint-disable-next-line  */}
+                    <img src={ele.icon} className="icon" />
+                    <h3 className="header1">{ele.description}</h3>
 
-                  <img src={ele.icon} className="icon" />
-                  <h3 className="header1">{ele.description}</h3>
-
-                  <h5 className="header1">Your Trip Date: {ele.date}</h5>
+                    <h5 className="header1">Your Trip Date: {ele.date}</h5>
+                  </div>
+                  <div className="delete-bttn">
+                    <Button
+                      color="error"
+                      variant="outlined"
+                      className="addButton1"
+                      onClick={() => deleteMyRemainder(ele._id)}
+                    >
+                      DELETE
+                    </Button>
+                  </div>
                 </div>
-                <div className="delete-bttn">
-                  <Button
-                    color="error"
-                    variant="outlined"
-                    className="addButton1"
-                    onClick={() => deleteMyRemainder(ele._id)}
-                  >
-                    DELETE
-                  </Button>
-                </div>
-              </div>
-            );
-          })
-      )}
+              );
+            })}
         </div>
-    )}
-      
+      )}
     </>
   );
 };

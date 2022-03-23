@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
 import { Box } from "@mui/system";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import CardMedia from "@mui/material/CardMedia";
 import "./style.css";
 
 const Search = () => {
   const [name, setName] = useState("");
   const [photos, setPhotos] = useState([]);
   const [video, setVideo] = useState([]);
-  // useEffect(() => {
-  //   getPhotos();
-  // }, []);
 
   const getPhotos = async () => {
     try {
@@ -64,36 +60,35 @@ const Search = () => {
       </Box>
       <Box sx={{ width: 1300, height: 750 }}>
         <ImageList variant="masonry" cols={3} gap={8}>
-          {/* {photos.length &&
-          photos.map((item) => (
-            <>
-              <ImageListItem key={item.id}>
-                <img
-                  src={`${item.webformatURL}?w=248&fit=crop&auto=format`}
-                  loading="lazy"
-                />
-              </ImageListItem>
-             
-             
-            </>
-          ))} */}
+          {photos.length &&
+            photos.map((item) => (
+              <>
+                <ImageListItem key={item.id}>
+                  {/*  eslint-disable-next-line  */}
+                  <img
+                    src={`${item.webformatURL}?w=248&fit=crop&auto=format`}
+                    loading="lazy"
+                  />
+                </ImageListItem>
+              </>
+            ))}
+
+          {video.length &&
+            video.map((vid) => {
+              return (
+                <>
+                  {/* <iframe
+                    width="853"
+                    height="480"
+                    src={vid.videos.large.url}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  /> */}
+                </>
+              );
+            })}
         </ImageList>
-
-        {video.length &&
-          video.map((vid) => {
-            <div className="video">
-              <video
-                autoPlay
-                src={`${vid.videos.medium.url}?w=248&fit=crop&auto=format`}
-                type="video/mp4"
-              />
-
-              {/* <video autoPlay>
-                <source src={vid.videos.medium.url} type="video/mp4" />
-              </video> */}
-              {/* <CardMedia component="video" src={vid.videos.medium.url} />; */}
-            </div>;
-          })}
       </Box>
     </div>
   );

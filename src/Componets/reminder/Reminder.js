@@ -12,7 +12,9 @@ import "./style.css";
 const Reminder = () => {
   const [date, setDate] = useState(new Date());
   const [name, setName] = useState("");
+  // eslint-disable-next-line
   const [description, setDescription] = useState("");
+  // eslint-disable-next-line
   const [departe, setDeparte] = useState("");
   const [info, setInfo] = useState([]);
   const [remind, setRemind] = useState({
@@ -26,7 +28,8 @@ const Reminder = () => {
     userId: JSON.parse(localStorage.getItem("userId")),
   });
   useEffect(() => {
-    getCityInfo()
+    getCityInfo();
+    // eslint-disable-next-line
   }, []);
 
   const getCityInfo = async () => {
@@ -35,54 +38,48 @@ const Reminder = () => {
       // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/`);
       setInfo(res.data);
       console.log(
-        `http://openweathermap.org/img/wn/${
-          res.data[0].weather[0].icon
-        }.png`
+        `http://openweathermap.org/img/wn/${res.data[0].weather[0].icon}.png`
       );
       // setDescription(res.data[0].weather[0].description)
       setRemind({
         cityName: name,
-        date:date,
+        date: date,
         description: res.data[0].weather[0].description,
-        temp:String(res.data[0].main.temp),
-        img:res.data[1].webformatURL,
-        icon: `http://openweathermap.org/img/wn/${
-          res.data[0].weather[0].icon
-        }.png`,
-        departedDate: departe, 
-        userId: JSON.parse(localStorage.getItem("userId"))
-      })
+        temp: String(res.data[0].main.temp),
+        img: res.data[1].webformatURL,
+        icon: `http://openweathermap.org/img/wn/${res.data[0].weather[0].icon}.png`,
+        departedDate: departe,
+        userId: JSON.parse(localStorage.getItem("userId")),
+      });
     } catch (error) {
       console.log("post user data error");
     }
   };
-
+  // eslint-disable-next-line
   const creatRemainder = async () => {
-    console.log(remind)
+    console.log(remind);
     try {
       const res = await axios.post(`http://localhost:5400/info/`, remind);
       // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/`);
       console.log(res.data);
-      
     } catch (error) {
       console.log("post user data error");
     }
   };
 
-
-   // countdown date
-   const countdownD = new Date (date);
-   // Get current date 
-   const nowDate = new Date();
-   const distance = countdownD - nowDate;
-   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  // countdown date
+  const countdownD = new Date(date);
+  // Get current date
+  const nowDate = new Date();
+  const distance = countdownD - nowDate;
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
 
   let search = (ev) => {
     ev.preventDefault();
     getCityInfo();
   };
 
-  let add = async() => {
+  let add = async () => {
     console.log("done");
     // creatRemainder();
     console.log(remind);
@@ -90,11 +87,9 @@ const Reminder = () => {
       const res = await axios.post(`http://localhost:5400/info/`, remind);
       // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/`);
       console.log(res.data);
-      
     } catch (error) {
       console.log("post user data error");
     }
- 
   };
 
   return (
@@ -133,18 +128,23 @@ const Reminder = () => {
         <>
           {info.length ? (
             <div className="remind-card">
+              {/*  eslint-disable-next-line  */}
               <img src={info[1].webformatURL} className="img" />
               <div className="divcon">
                 <h1 className="header1">{info[0].name}</h1>
                 <h2>{`${days}Days until your trip to: ${info[0].name}, ${info[0].sys.country}`}</h2>
                 {/* {setDeparte(`${days}Days until your trip to: ${info[0].name}, ${info[0].sys.country}`)} */}
-                <h3 className="header1">  {`The Temperature: ${info[0].main?.temp}`}</h3>
-
+                <h3 className="header1">
+                  {" "}
+                  {`The Temperature: ${info[0].main?.temp}`}
+                </h3>
+                {/*  eslint-disable-next-line  */}
                 <img
                   src={`http://openweathermap.org/img/wn/${
                     info[0].weather && info[0].weather[0].icon
                   }.png`}
-                  className="icon"/>
+                  className="icon"
+                />
                 <h3 className="header1">
                   {info[0].weather && info[0].weather[0].description}
                   {/* {setDescription(info[0].weather[0].description)} */}

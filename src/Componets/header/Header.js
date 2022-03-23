@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import Fade from "@mui/material/Fade";
 import SearchIcon from "@mui/icons-material/Search";
 import HomeIcon from "@mui/icons-material/Home";
 import { SiYourtraveldottv } from "react-icons/si";
 
 const Header = () => {
+// eslint-disable-next-line 
   const [isLog, setIsLog] = useState();
   const [user, setUser] = useState();
   let navigate = useNavigate();
@@ -48,11 +46,9 @@ const Header = () => {
   // log in
 
   //
+  // eslint-disable-next-line 
   const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  
   const handleClose = () => {
     setAnchorEl(null);
   };

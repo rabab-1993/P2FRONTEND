@@ -3,8 +3,6 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./Componets/header/Header";
-import ContactUs from "./Componets/contactus/ContactUs";
-import Reco from "./Componets/recommendation/Reco";
 import SignUp from "./Componets/account/signUp/SignUp";
 import Login from "./Componets/account/login/LogIn";
 import Home from "./Componets/home/Home";
