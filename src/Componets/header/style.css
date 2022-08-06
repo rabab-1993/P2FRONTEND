@@ -1,23 +1,26 @@
 nav {
-    height: 5rem;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    color:  #74b1ac;
-   
+  height: 5rem;
+  width: 100vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: #74b1ac;
+  background: rgba(255, 255, 255, 0.791);
+  position: fixed;
+  top: -0%;
+  z-index: 1;
 }
 
-
-#fade-button, #fade-menu {
-    cursor: pointer;
+#fade-button,
+#fade-menu {
+  cursor: pointer;
 }
 
 a {
-    text-decoration: none;
-    color:  #74b1ac;
-
+  text-decoration: none;
+  color: #74b1ac;
 }
 
-.logo{
-    font-size: 25px;
+.logo {
+  font-size: 25px;
 }

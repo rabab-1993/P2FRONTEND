@@ -9,16 +9,17 @@ import "./style.css";
 const Search = () => {
   const [name, setName] = useState("");
   const [photos, setPhotos] = useState([]);
+   // eslint-disable-next-line 
   const [video, setVideo] = useState([]);
 
   const getPhotos = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5400/search/photos?q=${name}`
+        `${process.env.REACT_APP_BASE_URL}/search/photos?q=${name}`
       );
 
       setPhotos(res.data);
-      console.log(res.data);
+     
     } catch (error) {
       console.log("get result data error");
     }
@@ -30,7 +31,6 @@ const Search = () => {
       );
 
       setVideo(res.data);
-      console.log(res.data);
     } catch (error) {
       console.log("get result data error");
     }
@@ -60,7 +60,7 @@ const Search = () => {
       </Box>
       <Box sx={{ width: 1300, height: 750 }}>
         <ImageList variant="masonry" cols={3} gap={8}>
-          {photos.length &&
+          {
             photos.map((item) => (
               <>
                 <ImageListItem key={item.id}>
@@ -73,21 +73,7 @@ const Search = () => {
               </>
             ))}
 
-          {video.length &&
-            video.map((vid) => {
-              return (
-                <>
-                  {/* <iframe
-                    width="853"
-                    height="480"
-                    src={vid.videos.large.url}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  /> */}
-                </>
-              );
-            })}
+         
         </ImageList>
       </Box>
     </div>

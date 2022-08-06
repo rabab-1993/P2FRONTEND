@@ -7,7 +7,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { SiYourtraveldottv } from "react-icons/si";
 
 const Header = () => {
-// eslint-disable-next-line 
+  // eslint-disable-next-line
   const [isLog, setIsLog] = useState();
   const [user, setUser] = useState();
   let navigate = useNavigate();
@@ -46,9 +46,9 @@ const Header = () => {
   // log in
 
   //
-  // eslint-disable-next-line 
+  // eslint-disable-next-line
   const [anchorEl, setAnchorEl] = useState(null);
-  
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -86,29 +86,6 @@ const Header = () => {
           <Link to="/myremind" onClick={toMyRemindPage}>
             MyRemaind
           </Link>
-
-          {/* <div>
-        <AccountCircleOutlinedIcon
-          id="fade-button"
-          aria-controls="fade-menu"
-          aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
-          onClick={handleClick}
-          fontSize="large"
-        />
-
-        <Menu
-          id="fade-menu"
-          MenuListProps={{
-            "aria-labelledby": "fade-button",
-          }}
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          TransitionComponent={Fade}
-        >
-        </Menu>
-      </div> */}
         </nav>
       ) : (
         <nav>
@@ -119,9 +96,6 @@ const Header = () => {
             <HomeIcon sx={{ fontSize: 30 }} />
           </Link>
           {/* <Link to="/contact">Contact us</Link> */}
-          <Link to="/search">
-            <SearchIcon onClick={toSearchPage} />
-          </Link>
 
           <MenuItem>
             <Link to="/signup" onClick={toSignUpPage}>

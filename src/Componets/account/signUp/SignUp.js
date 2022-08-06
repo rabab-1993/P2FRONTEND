@@ -26,7 +26,7 @@ const [newUser, setNewUser] = useState({
 
   const creatUser = async () => {
     try {
-      const res = await axios.post(`http://localhost:5400/users/`, newUser);
+      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/users/`, newUser);
       // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/`);
       console.log(res.data);
       localStorage.setItem("userId", JSON.stringify(res.data._id));

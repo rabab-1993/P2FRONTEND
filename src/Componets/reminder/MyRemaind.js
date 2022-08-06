@@ -1,24 +1,46 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Button from "@mui/material/Button";
-
+import { Button, Snackbar, IconButton } from "@mui/material";
+import { GrFormClose } from 'react-icons/gr';
 import "./remaind.css";
 const MyRemaind = () => {
   const [info, setInfo] = useState([]);
-
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     getMyRemainder();
     // eslint-disable-next-line
   }, []);
 
+  // Alert functions
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const action = (
+
+      
+      <IconButton
+        size="medium"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <GrFormClose className="close-icon" />
+      </IconButton>
+    
+  );
+  // end
   let userid = JSON.parse(localStorage.getItem("userId"));
   const getMyRemainder = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5400/info/remainder?userId=${userid}`
+        `${process.env.REACT_APP_BASE_URL}/info/remainder?userId=${userid}`
       );
       // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/`);
-      console.log(res.data);
       setInfo(res.data);
       // localStorage.setItem("userName", JSON.stringify(newUser));
       // window.location.reload(false);
@@ -31,9 +53,12 @@ const MyRemaind = () => {
   let deleteMyRemainder = async (id) => {
     try {
       const res = await axios.delete(
-        `http://localhost:5400/info/delete?_id=${id}`
+        `${process.env.REACT_APP_BASE_URL}/info/delete?_id=${id}`
       );
-      console.log(res.data);
+       // eslint-disable-next-line 
+      {
+        res.status === 200 ? setOpen(true) : setOpen(false);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -43,13 +68,13 @@ const MyRemaind = () => {
   return (
     <>
       {info.length === 0 ? (
-        <h1 style={{ textAlign: "center" }}>You Don't have any reminder</h1>
+        <h1 style={{ textAlign: "center", paddingTop:"10rem" }}>You Don't have any reminder</h1>
       ) : (
         <div className="reminde">
           {info.length &&
             info.map((ele) => {
               return (
-                <div className="remind-card">
+                <div key={ele._id} className="remind-card">
                   {/* eslint-disable-next-line  */}
                   <img src={ele.img} className="img" />
                   <div className="divcon1">
@@ -75,6 +100,16 @@ const MyRemaind = () => {
                 </div>
               );
             })}
+
+          <Snackbar
+            open={open}
+            autoHideDuration={9000}
+            onClose={handleClose}
+            message="deleted successfully!"
+            action={action}
+          />
+
+         
         </div>
       )}
     </>

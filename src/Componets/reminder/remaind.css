@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  margin: auto;
+
   text-align: center;
 }
 
@@ -22,4 +22,9 @@
 
 .delete-bttn {
   align-self: flex-end;
+}
+
+
+.close-icon {
+  background: #fff;
 }

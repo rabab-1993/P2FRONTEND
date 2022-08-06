@@ -24,8 +24,7 @@ const LogIn = () => {
 
   const allUser = async () => {
     try {
-      const res = await axios.get(`http://localhost:5400/users/`);
-      // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/`);
+      const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/`);
 
       window.location.reload(false);
 
@@ -33,10 +32,10 @@ const LogIn = () => {
         (ele) =>
           ele.userName === getUser.userName && ele.password === getUser.password
       );
-      console.log(found);
+      
       if (found) {
         localStorage.setItem("userId", JSON.stringify(found._id));
-        console.log("welcome");
+       
       } else {
         console.log("user dosnt have an account");
       }
@@ -50,7 +49,7 @@ const LogIn = () => {
 
     allUser();
     toHomePage();
-    console.log(getUser);
+    
   };
   return (
     <div className="login">
@@ -75,6 +74,7 @@ const LogIn = () => {
             label="Password"
             type="password"
             autoComplete="current-password"
+            autoSave="current-password"
             variant="standard"
             value={getUser.password}
             onChange={(ev) =>

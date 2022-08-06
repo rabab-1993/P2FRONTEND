@@ -3,9 +3,12 @@ import axios from "axios";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DateTimePicker from "@mui/lab/DateTimePicker";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
+import { Button, Snackbar, IconButton, TextField, Box } from "@mui/material";
+import { GrFormClose } from "react-icons/gr";
+
+// import TextField from "@mui/material/TextField";
+// import Button from "@mui/material/Button";
+// import Box from "@mui/material/Box";
 
 import "./style.css";
 
@@ -27,19 +30,38 @@ const Reminder = () => {
     departedDate: departe,
     userId: JSON.parse(localStorage.getItem("userId")),
   });
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     getCityInfo();
     // eslint-disable-next-line
   }, []);
 
+  // Alert functions
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const action = (
+    <IconButton
+      size="medium"
+      aria-label="close"
+      color="success"
+      onClick={handleClose}
+    >
+      <GrFormClose className="close-icon" />
+    </IconButton>
+  );
+
+  // end
+
   const getCityInfo = async () => {
     try {
-      const res = await axios.get(`http://localhost:5400/info?q=${name}`);
-      // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/`);
+      const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/info?q=${name}`);
       setInfo(res.data);
-      console.log(
-        `http://openweathermap.org/img/wn/${res.data[0].weather[0].icon}.png`
-      );
       // setDescription(res.data[0].weather[0].description)
       setRemind({
         cityName: name,
@@ -55,17 +77,7 @@ const Reminder = () => {
       console.log("post user data error");
     }
   };
-  // eslint-disable-next-line
-  const creatRemainder = async () => {
-    console.log(remind);
-    try {
-      const res = await axios.post(`http://localhost:5400/info/`, remind);
-      // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/`);
-      console.log(res.data);
-    } catch (error) {
-      console.log("post user data error");
-    }
-  };
+  
 
   // countdown date
   const countdownD = new Date(date);
@@ -80,13 +92,14 @@ const Reminder = () => {
   };
 
   let add = async () => {
-    console.log("done");
     // creatRemainder();
-    console.log(remind);
     try {
-      const res = await axios.post(`http://localhost:5400/info/`, remind);
+      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/info/`, remind);
       // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/`);
-      console.log(res.data);
+      // eslint-disable-next-line
+      {
+        res.status === 200 ? setOpen(true) : setOpen(false);
+      }
     } catch (error) {
       console.log("post user data error");
     }
@@ -155,14 +168,20 @@ const Reminder = () => {
                   Your Trip Date: {date.toLocaleString()}
                 </h4>
               </div>
-              <div className="buttonDiv">
-                <button className="addButton" onClick={add}>
-                  ADD
-                </button>
-              </div>
+
+              <Button className="addButton" onClick={add}>
+                ADD
+              </Button>
             </div>
           ) : null}
         </>
+        <Snackbar
+          open={open}
+          autoHideDuration={9000}
+          onClose={handleClose}
+          message="Reminder added successfully!"
+          action={action}
+        />
       </div>
     </>
   );

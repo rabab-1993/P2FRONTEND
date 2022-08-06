@@ -1,65 +1,60 @@
 .reminder {
-    width: 100vw;
-    height: 70%;
-   padding: 4rem;
-   margin-right: 6rem;
-    display: flex;
-    flex-direction: column;
-   
-    justify-content: space-evenly;
-    align-items: center;
-}
+  width: 100vw;
+  height: 100vh;
+  margin-right: 6rem;
+  display: flex;
+  flex-direction: column;
 
+  justify-content: space-evenly;
+  align-items: center;
+}
 
 .form {
-    width: 50vw;
-    margin-top: 15rem;
-    display: flex;
-    justify-content: space-evenly;
-   
+  width: 50vw;
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.remind-card{
-    width: 60%;
-    height: 19rem;
-    margin-top: 5rem;
-    display: flex;
-    border: 2px solid rgb(91, 189, 159);
-    border-radius: 9px;
+.remind-card {
+  width: 60%;
+  height: 42vh;
+  display: flex;
+  border: 2px solid rgb(91, 189, 159);
+  border-radius: 9px;
 }
-
 
 .img {
-    width: 45%;
-    height: 100%;
-    border-radius: 8px 0 0 8px;
+  width: 45%;
+  height: 100%;
+  border-radius: 8px 0 0 8px;
 }
 
 .icon {
-    background: #a0dbd6;
-    border-radius: 7px;
+  background: #a0dbd6;
+  border-radius: 7px;
 }
 
-.header1{
-    display: block;
-}
-.divcon{
-    position: absolute;
-    left: 710px;
-    top:390px;
-    line-height: 1.4;
+.header1 {
+  display: block;
 }
 
-.addButton{
-    width: 5rem;
-    margin-left: 1.5rem;
-    color: black;
-    margin-top: 17rem;
-    border-style: 
-    none;
-    padding: 
-    3px;
-    
+.divcon {
+  padding-left: 1rem;
+  justify-items: center;
+  align-self: center;
+}
+
+.remind-card button {
+  /* margin-left: 1.5rem; */
+  color: black;
+  /* margin-top: 17rem; */
+  border-style: none;
+  padding: 3px;
+  align-self: flex-end;
+}
+
+.close-icon {
+    background: #fff;
 }
 
 /* .buttonDiv{
